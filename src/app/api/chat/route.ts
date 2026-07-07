@@ -1,5 +1,5 @@
 import { streamText, createUIMessageStreamResponse, toUIMessageStream, UI_MESSAGE_STREAM_HEADERS } from 'ai';
-import { openai } from '@ai-sdk/openai';
+import { openai, createOpenAI } from '@ai-sdk/openai';
 import { google } from '@ai-sdk/google';
 import { createOpenRouter } from '@openrouter/ai-sdk-provider';
 import { prisma } from '@/lib/prisma';
@@ -14,6 +14,11 @@ export async function POST(req: NextRequest) {
 
     const openrouter = createOpenRouter({
       apiKey: process.env.OPENROUTER_API_KEY,
+    });
+
+    const groq = createOpenAI({
+      baseURL: 'https://api.groq.com/openai/v1',
+      apiKey: process.env.GROQ_API_KEY,
     });
 
     const session = await auth.api.getSession({ headers: req.headers });
@@ -52,6 +57,9 @@ export async function POST(req: NextRequest) {
       model = openai(modelId);
     } else if (modelId.startsWith('gemini')) {
       model = google(modelId);
+    } else if (modelId.startsWith('llama3')) {
+      // Groq models
+      model = groq(modelId);
     } else if (modelId.includes('/')) {
       // OpenRouter models use provider/model-name format
       model = openrouter(modelId);

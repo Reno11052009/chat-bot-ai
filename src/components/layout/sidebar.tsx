@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Plus, MessageSquare, Settings, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getConversations } from "@/actions/chat";
+import { DeleteChatButton } from "@/components/chat/delete-chat-button";
 
 export async function Sidebar() {
   const conversations = await getConversations();
@@ -21,12 +22,15 @@ export async function Sidebar() {
           <div className="text-sm text-muted-foreground px-2 py-4">No recent chats.</div>
         ) : (
           conversations.map((conv) => (
-            <Link key={conv.id} href={`/chat/${conv.id}`}>
-              <Button variant="ghost" className="w-full justify-start gap-2 h-auto py-2 px-2 text-left font-normal truncate">
-                <MessageSquare className="w-4 h-4 shrink-0" />
-                <span className="truncate">{conv.title}</span>
-              </Button>
-            </Link>
+            <div key={conv.id} className="group flex items-center relative">
+              <Link href={`/chat/${conv.id}`} className="flex-1 min-w-0">
+                <Button variant="ghost" className="w-full justify-start gap-2 h-auto py-2 px-2 text-left font-normal truncate">
+                  <MessageSquare className="w-4 h-4 shrink-0" />
+                  <span className="truncate">{conv.title}</span>
+                </Button>
+              </Link>
+              <DeleteChatButton id={conv.id} />
+            </div>
           ))
         )}
       </div>

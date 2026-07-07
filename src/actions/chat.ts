@@ -3,6 +3,7 @@
 import { prisma } from "@/lib/prisma";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
+import { revalidatePath } from "next/cache";
 
 export async function getConversations() {
   const session = await auth.api.getSession({ headers: await headers() });
@@ -40,7 +41,9 @@ export async function deleteConversation(id: string) {
   const session = await auth.api.getSession({ headers: await headers() });
   if (!session) throw new Error("Unauthorized");
 
-  return await prisma.conversation.delete({
+  await prisma.conversation.delete({
     where: { id, userId: session.user.id }
   });
+
+  revalidatePath("/", "layout");
 }

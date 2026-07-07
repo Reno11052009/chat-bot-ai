@@ -10,12 +10,16 @@ export type ModelId =
   | "gpt-4o"
   | "gpt-4o-mini"
   | "gpt-4.1"
-  | "meta-llama/llama-4-maverick";
+  | "meta-llama/llama-4-maverick"
+  | "llama3-70b-8192"
+  | "openai/gpt-oss-120b"
+  | "whisper-large-v3"
+  | "whisper-large-v3-turbo";
 
 export interface ModelOption {
   id: ModelId;
   name: string;
-  provider: "google" | "openai" | "openrouter";
+  provider: "google" | "openai" | "openrouter" | "groq";
   description: string;
   badge?: string;
 }
@@ -69,18 +73,46 @@ export const MODELS: ModelOption[] = [
     description: "Meta's frontier open model",
     badge: "Free",
   },
+  {
+    id: "llama3-70b-8192",
+    name: "Llama 3 70B",
+    provider: "groq",
+    description: "Instant responses via Groq LPU",
+    badge: "Fast",
+  },
+  {
+    id: "openai/gpt-oss-120b",
+    name: "GPT OSS 120B",
+    provider: "openai",
+    description: "Open source 120B model",
+    badge: "Free",
+  },
+  {
+    id: "whisper-large-v3",
+    name: "Whisper",
+    provider: "openai",
+    description: "Fast & accurate speech-to-text model",
+  },
+  {
+    id: "whisper-large-v3-turbo",
+    name: "Whisper Large Turbo",
+    provider: "openai",
+    description: "Fast & accurate speech-to-text model",
+  }
 ];
 
 const PROVIDER_LABELS: Record<ModelOption["provider"], string> = {
   google: "Google",
   openai: "OpenAI",
   openrouter: "OpenRouter",
+  groq: "Groq",
 };
 
 const PROVIDER_COLORS: Record<ModelOption["provider"], string> = {
   google: "#4285F4",
   openai: "#10A37F",
   openrouter: "#6B5EE4",
+  groq: "#F55036",
 };
 
 const BADGE_COLORS: Record<string, string> = {

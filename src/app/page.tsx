@@ -13,8 +13,6 @@ export default function LandingPage() {
         </div>
         <nav className="hidden md:flex gap-6 text-sm font-medium">
           <Link href="#features" className="hover:text-primary transition-colors">Features</Link>
-          <Link href="#pricing" className="hover:text-primary transition-colors">Pricing</Link>
-          <Link href="#faq" className="hover:text-primary transition-colors">FAQ</Link>
         </nav>
         <div className="flex items-center gap-4">
           <Link href="/login" className="text-sm font-medium hover:text-primary transition-colors">

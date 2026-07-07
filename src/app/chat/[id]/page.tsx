@@ -3,7 +3,8 @@ import { getConversation } from "@/actions/chat";
 import { notFound } from "next/navigation";
 import { UIMessage } from "ai";
 
-export default async function ChatDetailPage({ params }: { params: { id: string } }) {
+export default async function ChatDetailPage(props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const conversation = await getConversation(params.id);
 
   if (!conversation) {

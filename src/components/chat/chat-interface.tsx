@@ -155,6 +155,7 @@ export function ChatInterface({ initialMessages = [], id }: { initialMessages?: 
             </div>
           )}
           <div className="relative flex items-end w-full border rounded-2xl bg-muted/50 focus-within:ring-2 focus-within:ring-ring focus-within:border-transparent transition-all shadow-sm">
+            {/* Upload feature disabled
             <input
               type="file"
               ref={fileInputRef}
@@ -169,8 +170,9 @@ export function ChatInterface({ initialMessages = [], id }: { initialMessages?: 
             >
               <Paperclip className="w-5 h-5" />
             </button>
+            */}
             <textarea
-              className="flex-1 max-h-48 min-h-[56px] w-full resize-none bg-transparent pl-12 pr-14 py-4 text-base focus:outline-none placeholder:text-muted-foreground"
+              className="flex-1 max-h-48 min-h-[56px] w-full resize-none bg-transparent pl-4 pr-14 py-4 text-base focus:outline-none placeholder:text-muted-foreground"
               placeholder={`Message ${currentModel?.name ?? "AI"}...`}
               value={input}
               onChange={(e) => setInput(e.target.value)}
