@@ -19,7 +19,7 @@ export type ModelId =
 export interface ModelOption {
   id: ModelId;
   name: string;
-  provider: "google" | "openai" | "openrouter" | "groq";
+  provider: "google" | "openai" | "openrouter" | "groq" | "meta";
   description: string;
   badge?: string;
 }
@@ -69,14 +69,14 @@ export const MODELS: ModelOption[] = [
   {
     id: "meta-llama/llama-4-maverick",
     name: "Llama 4 Maverick",
-    provider: "openrouter",
+    provider: "meta",
     description: "Meta's frontier open model",
     badge: "Free",
   },
   {
     id: "llama3-70b-8192",
     name: "Llama 3 70B",
-    provider: "groq",
+    provider: "meta",
     description: "Instant responses via Groq LPU",
     badge: "Fast",
   },
@@ -106,6 +106,7 @@ const PROVIDER_LABELS: Record<ModelOption["provider"], string> = {
   openai: "OpenAI",
   openrouter: "OpenRouter",
   groq: "Groq",
+  meta: "Meta",
 };
 
 const PROVIDER_COLORS: Record<ModelOption["provider"], string> = {
@@ -113,6 +114,7 @@ const PROVIDER_COLORS: Record<ModelOption["provider"], string> = {
   openai: "#10A37F",
   openrouter: "#6B5EE4",
   groq: "#F55036",
+  meta: "#0668E1",
 };
 
 const BADGE_COLORS: Record<string, string> = {
