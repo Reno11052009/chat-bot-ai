@@ -11,7 +11,7 @@ export default async function ChatDetailPage(props: { params: Promise<{ id: stri
     notFound();
   }
 
-  const initialMessages: UIMessage[] = conversation.messages.map((m) => ({
+  const initialMessages: UIMessage[] = conversation.messages.map((m: any) => ({
     id: m.id,
     role: m.role as 'system' | 'user' | 'assistant',
     parts: [{ type: 'text', text: m.content }],
