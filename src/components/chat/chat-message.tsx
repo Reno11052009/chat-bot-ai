@@ -56,7 +56,7 @@ export function ChatMessage({ message }: ChatMessageProps) {
               },
             }}
           >
-            {message.parts?.filter((p: any) => p.type === 'text').map((p: any) => p.text).join('') || message.content || ""}
+            {message.parts?.filter((p: any) => p.type === 'text').map((p: any) => p.text).join('') || (message as any).content || ""}
           </ReactMarkdown>
         </div>
       </div>

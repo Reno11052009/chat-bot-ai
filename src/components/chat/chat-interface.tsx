@@ -108,7 +108,7 @@ export function ChatInterface({ initialMessages = [], id }: { initialMessages?: 
           disabled={isStreaming}
         />
         <Button variant="outline" size="sm" onClick={() => {
-          const content = messages.map(m => `**${m.role}**:\n${m.parts?.filter((p: any) => p.type === "text").map((p: any) => p.text).join("") || m.content || ""}`).join("\n\n---\n\n");
+          const content = messages.map(m => `**${m.role}**:\n${m.parts?.filter((p: any) => p.type === "text").map((p: any) => p.text).join("") || (m as any).content || ""}`).join("\n\n---\n\n");
           const blob = new Blob([content], { type: "text/markdown" });
           const url = URL.createObjectURL(blob);
           const a = document.createElement("a");
